@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Management</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>Inventory Management</title>
+</head>
+
+</head>
+<body>
+   <h1>Inventory Management</h1>
+</body>
+
+<form method="post">
+    <p>
+        <label for="product">What is the product?</label>
+        <input type="text" name="Product" id = "product"/>
+    </p>
+    <p>
+        <label for="quantity">How much stock have you got?</label>
+        <input type="number" name="Quantity" id="quantity">
+    </p>
+    <p>
+        <input type="submit" name="Submit" value="Submit"/>
+    </p>
+
+</form>
+</html>
