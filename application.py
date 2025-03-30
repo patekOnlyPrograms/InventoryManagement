@@ -18,6 +18,14 @@ def index():
 def inventory():
     return render_template('inventory.html')
 
+@app.route('/product_list')
+def product_list():
+    return render_template("product_list.html")
+
+@app.route('add_remove_product')
+def add_remove_product():
+
+
 def create_tables():
     db.create_all()
 
