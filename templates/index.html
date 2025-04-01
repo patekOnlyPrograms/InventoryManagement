@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Inventory Management</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
-    <title>Inventory Management</title>
-</head>
+{% extends "base.html" %}  <!-- Extend base.html -->
 
-</head>
+{% block title %}Inventory Management{% endblock %}  <!-- Set the page title -->
+
+{% block content %}  <!-- Start the content block -->
 <body>
    <h1>Inventory Management</h1>
 </body>
@@ -27,4 +21,4 @@
     </p>
 
 </form>
-</html>
+{% endblock %}  <!-- End the content block -->

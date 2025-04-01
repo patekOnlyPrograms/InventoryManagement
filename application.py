@@ -22,9 +22,9 @@ def inventory():
 def product_list():
     return render_template("product_list.html")
 
-@app.route('add_remove_product')
+@app.route('/add_remove_product')
 def add_remove_product():
-
+    return render_template("add_remove_product.html")
 
 def create_tables():
     db.create_all()
