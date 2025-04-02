@@ -1,16 +1,20 @@
+from sqlalchemy import text
 from flask import Flask, render_template, request
 from db import db
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///site.db'
+databaseName = 'InventoryDatabase'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{databaseName}.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
-inventory = []
+#inventory = []
 
 @app.route('/')
 def index():
+    test_db()
     return render_template('index.html', inventory = inventory)
 
 @app.route('/inventory')
@@ -29,9 +33,18 @@ def add_remove_product():
     return render_template("add_remove_product.html")
 
 def create_tables():
-    db.create_all()
+    with app.app_context():
+        db.create_all()
 
-app.app_context().push()
+def test_db():
+    try:
+        db.session.query(text('1')).from_statement(text('SELECT 1')).all()
+        return print("IT WORKS")
+    except Exception as ex:
+        errorText = str(ex)
+        return errorText
+
+#app.app_context().push()
 
 create_tables()
 
