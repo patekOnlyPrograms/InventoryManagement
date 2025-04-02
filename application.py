@@ -11,7 +11,6 @@ inventory = []
 
 @app.route('/')
 def index():
-    product_name = request.form.get("Product Name:")
     return render_template('index.html', inventory = inventory)
 
 @app.route('/inventory')
@@ -22,8 +21,11 @@ def inventory():
 def product_list():
     return render_template("product_list.html")
 
-@app.route('/add_remove_product')
+@app.route('/add_remove_product', methods=['GET','POST'])
 def add_remove_product():
+    product_name = request.form.get("Product")
+    quantity = request.form.get("Quantity")
+    print(product_name, quantity)
     return render_template("add_remove_product.html")
 
 def create_tables():
