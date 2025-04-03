@@ -8,7 +8,7 @@ class Products(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     productName: Mapped[String] = mapped_column(String(80), nullable= False)
-    productQuantity:  db.Column(db.Integer, nullable=False)
+    productQuantity: Mapped[int] = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return f"Produce Name is {self.productName}, we have {self.productQuantity} in Stock"

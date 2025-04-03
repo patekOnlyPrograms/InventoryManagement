@@ -1,18 +1,18 @@
-from sqlalchemy import text
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import text, String, Integer
 
-db = SQLAlchemy()
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///InventoryDatabase.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-def create_app():
-    app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///InventoryDatabase.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    db.init_app(app)
+db = SQLAlchemy(app)
 
-    return app
+from models import Product
 
-app = create_app()
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():
@@ -46,6 +46,4 @@ def test_db():
         errorText = str(ex)
         return errorText
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
+app.run(debug=True)
