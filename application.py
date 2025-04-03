@@ -2,16 +2,16 @@ from sqlalchemy import text
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///InventoryDatabase.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy()
 db.init_app(app)
+from models import Products
 
 
-
-from models import  Products
 
 with app.app_context():
     db.create_all()
@@ -32,12 +32,15 @@ def product_list():
 
 @app.route('/add_remove_product', methods=['GET','POST'])
 def add_remove_product():
-    product_name = request.form.get("Product")
-    quantity = request.form.get("Quantity")
-    print(product_name, quantity)
+    if request.method == 'POST':
+        productName = request.form.get("Product")
+        productQuantity = int(request.form.get("Quantity"))
+        print(productName, productQuantity)
+        newProduct = Products(productName = productName, productQuantity = productQuantity)
+        db.session.add(newProduct)
+        db.session.commit()
+        return render_template("add_remove_product.html")
     return render_template("add_remove_product.html")
-
-
 
 
 def test_db():
