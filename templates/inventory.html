@@ -3,14 +3,26 @@
 {% block title %}Inventory Management{% endblock %}  <!-- Set the page title -->
 
 {% block content %}  <!-- Start the content block -->
-<body>
-    <h1>Inventory</h1>
 
-    <div class="vertical-menu">
-        <a href="{{ url_for('product_list') }}">Product List</a>
-        <a href="">Search for products</a>
-        <a href="">Edit product details</a>
-        <a href="">Add/Remove Products</a>
-    </div>
-</body>
+<div class="container mt-4">
+
+
+    <body>
+        <h1>Inventory Overview</h1>
+    </body>
+
+        <form method="POST">
+            <fieldset>
+                <legend>What Product would you like to search for?</legend>
+                <p>
+                    <label for="productsearch">Product Name</label>
+                    <input type="text" name="productSearch" id="productsearch"/>
+                </p>
+            </fieldset>
+        </form>
+
+
+</div>
+
+
 {% endblock %}  <!-- End the content block -->

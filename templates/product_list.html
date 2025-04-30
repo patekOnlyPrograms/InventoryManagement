@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add items</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
-    <title>Inventory</title>
-</head>
-<body>
-  <h1>Product List</h1>
-</body>
-</html>
+{% extends "base.html" %}  <!-- Extend base.html -->
+
+{% block title %}Inventory Management{% endblock %}  <!-- Set the page title -->
+
+{% block content %}  <!-- Start the content block -->
+
+
+<div class="container mt-4">
+  <body>
+    <h1>Product List</h1>
+  </body>
+</div>
+
+{% endblock %}  <!-- End the content block -->

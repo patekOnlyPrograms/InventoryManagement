@@ -3,36 +3,41 @@
 {% block title %}Inventory Management{% endblock %}  <!-- Set the page title -->
 
 {% block content %}  <!-- Start the content block -->
-<body>
-    <h1>Add or Remove Products</h1>
-</body>
 
 
-<form method="POST">
-    <fieldset>
-        <legend>Do you want to add or remove a product?</legend>
-        <div>
-            <input type="radio" name="Add_Or_Delete" id="Add" value="Add" checked>
-            <label for="Add">Add</label>
-        </div>
-        <div>
-            <input type="radio" name="Add_Or_Delete" id="Delete" value="Delete" checked>
-            <label for="Delete">Delete</label>
-        </div>
-    </fieldset>
-    <p>
-        <label for="product">What is the product?</label>
-        <input type="text" name="Product" id = "product" />
+<div class="container mt-4">
+    <body>
+        <h1>Add or Remove Products</h1>
+    </body>
 
-    </p>
-    <p>
-        <label for="quantity">How much stock have you got?</label>
-        <input type="number" name="productQuantity" id="quantity">
-    </p>
-    <p>
-        <input type="submit" name="Submit" value="Submit"/>
-    </p>
+   <form method="POST">
+        <fieldset>
+            <legend>Do you want to add or remove a product?</legend>
+            <div>
+                <input type="radio" name="Add_Or_Delete" id="Add" value="Add" checked>
+                <label for="Add">Add</label>
+            </div>
+            <div>
+                <input type="radio" name="Add_Or_Delete" id="Delete" value="Delete" checked>
+                <label for="Delete">Delete</label>
+            </div>
+        </fieldset>
+        <p>
+            <label for="product">What is the product?</label>
+            <input type="text" name="Product" id = "product" />
 
-</form>
+        </p>
+        <p>
+            <label for="quantity">How much stock have you got?</label>
+            <input type="number" name="productQuantity" id="quantity">
+        </p>
+        <p>
+            <input type="submit" name="Submit" value="Submit"/>
+        </p>
+
+    </form>
+
+</div>
+
 
 {% endblock %}  <!-- End the content block -->
