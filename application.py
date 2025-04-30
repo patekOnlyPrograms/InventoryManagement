@@ -1,9 +1,11 @@
-from sqlalchemy import text
+from sqlalchemy import text, select
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap
 
 
 app = Flask(__name__)
+Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///InventoryDatabase.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -30,16 +32,22 @@ def inventory():
 def product_list():
     return render_template("product_list.html")
 
-@app.route('/add_remove_product', methods=['GET','POST'])
+@app.route('/add_remove_product', methods=['GET','POST','DELETE'])
 def add_remove_product():
     if request.method == 'POST':
-        productName = request.form.get("Product")
-        productQuantity = int(request.form.get("Quantity"))
-        print(productName, productQuantity)
-        newProduct = Products(productName = productName, productQuantity = productQuantity)
-        db.session.add(newProduct)
-        db.session.commit()
-        return render_template("add_remove_product.html")
+        option = request.form["Add_Or_Delete"]
+        if option == "Add":
+            productName = request.form.get("Product")
+            productQuantity = int(request.form.get("productQuantity"))
+            print(productName, productQuantity)
+            newProduct = Products(productName = productName, productQuantity = productQuantity)
+            db.session.add(newProduct)
+            db.session.commit()
+            return render_template("add_remove_product.html")
+        else:
+
+            return render_template("add_remove_product.html")
+
     return render_template("add_remove_product.html")
 
 
